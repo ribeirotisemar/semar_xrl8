@@ -386,3 +386,81 @@ button#btn-salvar:hover {
 .downloads-list a:hover {
   text-decoration: underline;
 }
+/* === PÁGINA DE LOJA === */
+
+.header {
+  padding: 14px 12px;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.btn-voltar {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-weight: 500;
+}
+
+.btn-voltar:hover {
+  background: rgba(0,0,0,0.35);
+}
+
+.loja-links {
+  padding: 12px;
+}
+
+.loja-links h2 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.loja-links ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.loja-links li {
+  background: var(--card);
+  padding: 10px;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.loja-links a {
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: 500;
+}
+
+.loja-links a:hover {
+  text-decoration: underline;
+}
+.procedimentos-list li {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  padding: 10px;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  gap: 10px; /* espaço entre ícone e texto */
+}
+
+.icon-lista {
+  width: 24px; /* tamanho do ícone */
+  height: 24px;
+  flex-shrink: 0;
+}
