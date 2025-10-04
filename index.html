@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Site</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PORTAL TI RIBEIRO</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Olá, mundo!</h1>
-  <p>Bem-vindo ao meu site hospedado no GitHub Pages 🚀</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>TI RIBEIRO</h1>
+      <p class="subtitle">Feito para Consulta rápida — otimizado</p>
+    </div>
+  </header>
+
+  <!-- NAV de abas: cada link também é um fallback para uma página separada -->
+  <nav class="tabs" role="tablist" aria-label="Navegação principal">
+    <a href="agenda.html#agenda" class="tab" data-target="agenda" role="tab" aria-controls="panel-agenda" aria-selected="false">AGENDA</a>
+    <a href="lojas.html#lojas" class="tab" data-target="lojas" role="tab" aria-controls="panel-lojas" aria-selected="false">LOJAS</a>
+    <a href="procedimentos.html#procedimentos" class="tab" data-target="procedimentos" role="tab" aria-controls="panel-procedimentos" aria-selected="false">PROCEDIMENTOS TI</a>
+    <a href="downloads.html#downloads" class="tab" data-target="downloads" role="tab" aria-controls="panel-downloads" aria-selected="false">DOWNLOADS</a>
+  </nav>
+
+  <main class="container">
+    <!-- AGENDA -->
+    <section id="panel-agenda" class="tab-panel" role="tabpanel" aria-labelledby="tab-agenda" hidden>
+      <h2>Agenda</h2>
+      <p>Próximos eventos e lembretes. (Página completa: <a href="agenda.html">agenda.html</a>)</p>
+      <ul class="agenda-list">
+        <li><strong>10/10/2025</strong> — Manutenção loja 10 (exemplo)</li>
+        <li><strong>15/10/2025</strong> — Treinamento procedimento X</li>
+      </ul>
+    </section>
+
+    <!-- LOJAS -->
+    <section id="panel-lojas" class="tab-panel" role="tabpanel" aria-labelledby="tab-lojas" hidden>
+      <h2>Lojas</h2>
+      <p>Selecione a loja para consultar dados rápidos. (Página completa: <a href="lojas.html">lojas.html</a>)</p>
+      <ul class="lojas-list">
+        <li><a href="lojas.html#loja-10">Loja 10</a></li>
+        <li><a href="lojas.html#loja-18">Loja 18</a></li>
+        <li><a href="lojas.html#loja-30">Loja 30</a></li>
+        <li><a href="lojas.html#loja-40">Loja 40</a></li>
+      </ul>
+    </section>
+
+    <!-- PROCEDIMENTOS -->
+    <section id="panel-procedimentos" class="tab-panel" role="tabpanel" aria-labelledby="tab-procedimentos" hidden>
+      <h2>Procedimentos TI</h2>
+      <p>Área com tutoriais, checklists e bloco de notas. (Página completa: <a href="procedimentos.html">procedimentos.html</a>)</p>
+      <ul class="procedimentos-list">
+        <li>Tutorial: Como resetar roteador</li>
+        <li>Tutorial: Configuração de impressora</li>
+        <li><a href="procedimentos.html#bloco-notas">Bloco de notas</a></li>
+      </ul>
+    </section>
+
+    <!-- DOWNLOADS -->
+    <section id="panel-downloads" class="tab-panel" role="tabpanel" aria-labelledby="tab-downloads" hidden>
+      <h2>Arquivos para download</h2>
+      <p>Coloque seus documentos na pasta <code>/files</code> do repositório e eles aparecerão aqui (ex.: <code>/files/manual.pdf</code>).</p>
+      <ul class="downloads-list">
+        <li><a href="files/manual-de-procedimentos.pdf" download>Manual de Procedimentos (PDF)</a></li>
+        <li><a href="files/planilha-controle.xlsx" download>Planilha de Controle (XLSX)</a></li>
+        <li><a href="files/guia-rapido.txt" download>Guia rápido (TXT)</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© 2025 — Equipe TI Semar</small>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
+
