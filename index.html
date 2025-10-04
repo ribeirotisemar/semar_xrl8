@@ -8,6 +8,7 @@
 </head>
 <body>
   <header class="site-header">
+
     <div class="header-inner">
       <h1>TI RIBEIRO</h1>
       <p class="subtitle">Feito para Consulta rápida — otimizado</p>
@@ -25,51 +26,92 @@
   <main class="container">
     <!-- AGENDA -->
     <section id="panel-agenda" class="tab-panel" role="tabpanel" aria-labelledby="tab-agenda" hidden>
-      <h2>Agenda</h2>
-      <p>Próximos eventos e lembretes. (Página completa: <a href="agenda.html">agenda.html</a>)</p>
-      <ul class="agenda-list">
-        <li><strong>10/10/2025</strong> — Manutenção loja 10 (exemplo)</li>
-        <li><strong>15/10/2025</strong> — Treinamento procedimento X</li>
-      </ul>
-    </section>
+  <h2>Agenda</h2>
 
+  <!-- Data atual -->
+  <div id="data-atual" class="data-hoje"></div>
+
+  <!-- Bloco de notas simples -->
+  <div class="bloco-anotacoes">
+    <h3>Bloco de Notas</h3>
+    <textarea id="texto-agenda" placeholder=" o que precisa fazer hoje... ?"></textarea>
+  </div>
+
+  <!-- Checklist -->
+  <div class="checklist">
+    <h3>Checklist Diário</h3>
+    <label><input type="checkbox"> Chamados</label>
+    <label><input type="checkbox"> Nível de tinta das impressoras</label>
+    <label><input type="checkbox"> PDVs online</label>
+    <label><input type="checkbox"> Terminais de consulta</label>
+    <label><input type="checkbox"> Conexão com internet lojas</label>
+  </div>
+</section>
+
+ 
     <!-- LOJAS -->
-    <section id="panel-lojas" class="tab-panel" role="tabpanel" aria-labelledby="tab-lojas" hidden>
-      <h2>Lojas</h2>
-      <p>Selecione a loja para consultar dados rápidos. (Página completa: <a href="lojas.html">lojas.html</a>)</p>
-      <ul class="lojas-list">
-        <li><a href="lojas.html#loja-10">Loja 10</a></li>
-        <li><a href="lojas.html#loja-18">Loja 18</a></li>
-        <li><a href="lojas.html#loja-30">Loja 30</a></li>
-        <li><a href="lojas.html#loja-40">Loja 40</a></li>
-      </ul>
-    </section>
+  <section id="panel-lojas" class="tab-panel" role="tabpanel" aria-labelledby="tab-lojas" hidden>
+  <h2>Lojas</h2>
 
-    <!-- PROCEDIMENTOS -->
-    <section id="panel-procedimentos" class="tab-panel" role="tabpanel" aria-labelledby="tab-procedimentos" hidden>
-      <h2>Procedimentos TI</h2>
-      <p>Área com tutoriais, checklists e bloco de notas. (Página completa: <a href="procedimentos.html">procedimentos.html</a>)</p>
-      <ul class="procedimentos-list">
-        <li>Tutorial: Como resetar roteador</li>
-        <li>Tutorial: Configuração de impressora</li>
-        <li><a href="procedimentos.html#bloco-notas">Bloco de notas</a></li>
-      </ul>
-    </section>
+  <div class="lojas-grid">
+    <a href="loja10.html" class="loja-card" style="background-image: url('img/loja10.jpg');">
+      <div class="overlay">
+        <h3>Loja 10</h3>
+        <p>Taubaté 1</p>
+      </div>
+    </a>
+
+    <a href="loja18.html" class="loja-card" style="background-image: url('img/loja18.jpg');">
+      <div class="overlay">
+        <h3>Loja 18</h3>
+        <p>Taubaté 2</p>
+      </div>
+    </a>
+
+    <a href="loja30.html" class="loja-card" style="background-image: url('img/loja30.jpg');">
+      <div class="overlay">
+        <h3>Loja 30</h3>
+        <p>São José dos Campos</p>
+      </div>
+    </a>
+
+    <a href="loja36.html" class="loja-card" style="background-image: url('img/loja36.jpg');">
+      <div class="overlay">
+        <h3>Loja 36</h3>
+        <p>Jacareí</p>
+      </div>
+    </a>
+  </div>
+</section>
+<!-- PROCEDIMENTOS -->
+    <<section id="panel-procedimentos" class="tab-panel" role="tabpanel" aria-labelledby="tab-procedimentos" hidden>
+  <h2>Procedimentos TI</h2>
+
+  <ul class="procedimentos-list">
+    <li><a href="https://drive.google.com/file/d/EXEMPLO1/view" target="_blank">Bloco de Notas - Procedimentos Gerais</a></li>
+    <li><a href="https://drive.google.com/file/d/EXEMPLO2/view" target="_blank">Tutorial: Reset de Roteadores</a></li>
+    <li><a href="https://drive.google.com/file/d/EXEMPLO3/view" target="_blank">Checklist de Impressoras</a></li>
+    <li><a href="https://drive.google.com/file/d/EXEMPLO4/view" target="_blank">Documentação de Terminais de Consulta</a></li>
+  </ul>
+</section>
+
 
     <!-- DOWNLOADS -->
     <section id="panel-downloads" class="tab-panel" role="tabpanel" aria-labelledby="tab-downloads" hidden>
-      <h2>Arquivos para download</h2>
-      <p>Coloque seus documentos na pasta <code>/files</code> do repositório e eles aparecerão aqui (ex.: <code>/files/manual.pdf</code>).</p>
-      <ul class="downloads-list">
-        <li><a href="files/manual-de-procedimentos.pdf" download>Manual de Procedimentos (PDF)</a></li>
-        <li><a href="files/planilha-controle.xlsx" download>Planilha de Controle (XLSX)</a></li>
-        <li><a href="files/guia-rapido.txt" download>Guia rápido (TXT)</a></li>
-      </ul>
-    </section>
+  <h2>Downloads</h2>
+
+  <ul class="downloads-list">
+    <li><a href="docs/manual_usuarios.pdf" download>Manual de Usuários</a></li>
+    <li><a href="docs/instalacao_software.pdf" download>Instalação de Software</a></li>
+    <li><a href="docs/checklist_manutencao.pdf" download>Checklist de Manutenção</a></li>
+    <li><a href="docs/procedimentos_ti.pdf" download>Procedimentos TI</a></li>
+  </ul>
+</section>
+
   </main>
 
   <footer class="site-footer">
-    <small>© 2025 — Equipe TI Semar</small>
+    <small>© 2025 — Ribeiro TI Semar</small>
   </footer>
 
   <script src="js/script.js"></script>
