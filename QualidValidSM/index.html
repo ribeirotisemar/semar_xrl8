@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<h2>📦 Controle de Validade QVS 2.0</h2>
+<h2>📦 Controle de Validade QSV 3.0</h2>
 
 <form id="produtoForm">
   <label>Código:</label>
@@ -40,13 +40,12 @@
 </form>
 
 <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyBkXhrw0IPPxRh1-vUFQM_PPtgHBQlLhWlo2dBevN3smsuxQUYn7iUDZiSntA_pcNB/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwFp10BhgGBKpK5sEny9zDxR2o-J--6Q4107_gnZax3gxsrflUKfKwHbetp7_9u7oEthg/exec";
 
   document.getElementById("produtoForm").addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
 
-    // Envia dados como JSON
     fetch(scriptURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
