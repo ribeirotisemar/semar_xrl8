@@ -40,27 +40,37 @@
 </form>
 
 <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwqvuAvsIVKtKXth6GDClAGge3fuHT3OpLGkapL8QhBoSaIKFD6Ukght4RQopvoBoDc6g/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyBkXhrw0IPPxRh1-vUFQM_PPtgHBQlLhWlo2dBevN3smsuxQUYn7iUDZiSntA_pcNB/exec";
 
   document.getElementById("produtoForm").addEventListener("submit", e => {
     e.preventDefault();
     const form = e.target;
-    const data = new FormData();
-    data.append("codigo", form.codigo.value);
-    data.append("descricao", form.descricao.value);
-    data.append("quantidade", form.quantidade.value);
-    data.append("setor", form.setor.value);
-    data.append("validade", form.validade.value);
 
-    fetch(scriptURL, { method: "POST", body: data })
-      .then(res => {
+    // Envia dados como JSON
+    fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        codigo: form.codigo.value,
+        descricao: form.descricao.value,
+        quantidade: form.quantidade.value,
+        setor: form.setor.value,
+        validade: form.validade.value
+      })
+    })
+    .then(res => res.json())
+    .then(response => {
+      if(response.status === "success"){
         document.getElementById("msg").textContent = "✅ Produto salvo com sucesso!";
         form.reset();
-      })
-      .catch(err => {
-        document.getElementById("msg").textContent = "❌ Erro ao enviar. Tente novamente.";
-        console.error(err);
-      });
+      } else {
+        document.getElementById("msg").textContent = "❌ Erro ao enviar: " + response.message;
+      }
+    })
+    .catch(err => {
+      document.getElementById("msg").textContent = "❌ Erro ao enviar. Tente novamente.";
+      console.error(err);
+    });
   });
 </script>
 
