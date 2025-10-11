@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel de Impressoras com Controle de Scroll</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .scroll-control {
+      margin-bottom: 25px;
+    }
+
+    .scroll-control label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="range"] {
+      width: 80%;
+    }
+
+    .percentage {
+      font-size: 14px;
+      color: #444;
+      margin-top: 5px;
+    }
+
+    .printers {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .printer {
+      width: 300px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .printer h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .iframe-mask {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .iframe-mask iframe {
+      width: 1000px; /* Largura maior que o container para scroll horizontal */
+      height: 1000px; /* Altura maior que o container para scroll vertical */
+      border: none;
+      transition: margin 0.3s ease;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Painel de Impressoras RIBEIRO TI</h1>
+
+  <!-- Barra de controle vertical -->
+  <div class="scroll-control">
+    <label for="scrollVertical">X</label>
+    <input type="range" id="scrollVertical" min="0" max="700" step="10" value="350"> <!-- Valor inicial em 50% (350 de 700) -->
+    <div class="percentage" id="verticalPercent">50%</div> <!-- Inicialmente exibe 50% -->
+  </div>
+
+  <!-- Barra de controle horizontal -->
+  <div class="scroll-control">
+    <label for="scrollHorizontal">Y</label>
+    <input type="range" id="scrollHorizontal" min="0" max="700" step="10" value="350"> <!-- Valor inicial em 50% (350 de 700) -->
+    <div class="percentage" id="horizontalPercent">50%</div> <!-- Inicialmente exibe 50% -->
+  </div>
+
+  <div class="printers">
+    <div class="printer">
+      <h2>LJ18-BALCAO - 9735</h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.18.89"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ18-RH - 9746</h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.18.200"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ18-CPD - 9755</h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.18.199"></iframe>
+      </div>
+    </div>
+
+     <div class="printer">
+      <h2>LJ30-BALCAO - 10581</h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.31.66"></iframe>
+      </div>
+    </div>
+
+     <div class="printer">
+      <h2>LJ30-RH - 10571</h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.31.67"></iframe>
+      </div>
+    </div>
+
+     <div class="printer">
+      <h2>LJ30-CPD - 10569 </h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.31.68"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ-30-DRIVE - 13702 </h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.31.69"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ-10 - DRIVE - 9761 </h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.60.159"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ-10 - RH - 9730</h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.60.157"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ-10 - CPD - </h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.60.158"></iframe>
+      </div>
+    </div>
+
+    <div class="printer">
+      <h2>LJ-10 - BALCÃO - 9745 </h2>
+      <div class="iframe-mask">
+        <iframe src="http://192.168.60.156"></iframe>
+      </div>
+    </div>
+    
+    
+
+
+
+
+
+
+
+  </div> 
+    
+
+  
+
+  <script>
+    const scrollVertical = document.getElementById('scrollVertical');
+    const scrollHorizontal = document.getElementById('scrollHorizontal');
+    const iframes = document.querySelectorAll('.iframe-mask iframe');
+    const verticalPercent = document.getElementById('verticalPercent');
+    const horizontalPercent = document.getElementById('horizontalPercent');
+
+    // Função para atualizar o valor da porcentagem
+    function updatePercentage(slider, percentLabel) {
+      const value = slider.value;
+      const percentage = Math.round((value / slider.max) * 100);
+      percentLabel.textContent = percentage + '%';
+    }
+
+    // Atualizar porcentagem ao mover a barra de rolagem vertical
+    scrollVertical.addEventListener('input', () => {
+      updatePercentage(scrollVertical, verticalPercent);
+      iframes.forEach(iframe => {
+        iframe.style.marginTop = `-${scrollVertical.value}px`;
+      });
+    });
+
+    // Atualizar porcentagem ao mover a barra de rolagem horizontal
+    scrollHorizontal.addEventListener('input', () => {
+      updatePercentage(scrollHorizontal, horizontalPercent);
+      iframes.forEach(iframe => {
+        iframe.style.marginLeft = `-${scrollHorizontal.value}px`;
+      });
+    });
+
+    // Definir as porcentagens iniciais
+    updatePercentage(scrollVertical, verticalPercent); // Atualiza a porcentagem inicial da rolagem vertical
+    updatePercentage(scrollHorizontal, horizontalPercent); // Atualiza a porcentagem inicial da rolagem horizontal
+  </script>
+</body>
+</html>
