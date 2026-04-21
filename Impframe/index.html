@@ -1,126 +1,235 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel de Impressoras com Controle de Scroll</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 { margin-bottom: 20px; }
+
+    .scroll-control { margin-bottom: 25px; }
+    .scroll-control label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input[type="range"] { width: 80%; }
+    .percentage { font-size: 14px; color: #444; margin-top: 5px; }
+
+    .section-title {
+      width: 100%;
+      text-align: left;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin: 10px 0 5px;
+    }
+
+    .section-low { background: #ffe0e0; color: #c0392b; }
+    .section-ok  { background: #e8f5e9; color: #2e7d32; }
+
+    .printers {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .printer {
+      width: 300px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .printer.low {
+      border: 2px solid #e74c3c;
+      background: #fff5f5;
+    }
+
+    .printer h2 { font-size: 16px; margin-bottom: 6px; }
+
+    .iframe-mask {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .iframe-mask iframe {
+      width: 1000px;
+      height: 1000px;
+      border: none;
+      transition: margin 0.3s ease;
+      pointer-events: none;
+    }
+
+    .btn-low {
+      margin-top: 8px;
+      padding: 4px 12px;
+      font-size: 13px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #e74c3c;
+      color: white;
+      transition: background 0.2s;
+    }
+
+    .btn-low.ok {
+      background: #27ae60;
+    }
+
+    #low-section, #ok-section {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Painel de Impressoras RIBEIRO TI 1.0</h1>
+  <h1>Painel de Impressoras VALE</h1>
 
-  <div class="printers">
-    <!-- Impressora 1 -->
-    <div class="printer">
-      <h2>LJ18-BALCAO - 9735</h2>
-      <div class="iframe-mask">
-        <iframe src="http://192.168.18.89"></iframe>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollVertical_9735">Rolagem Vertical</label>
-        <input type="range" id="scrollVertical_9735" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="verticalPercent_9735">50%</div>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollHorizontal_9735">Rolagem Horizontal</label>
-        <input type="range" id="scrollHorizontal_9735" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="horizontalPercent_9735">50%</div>
-      </div>
-    </div>
+  <div class="scroll-control">
+    <label for="scrollVertical">X</label>
+    <input type="range" id="scrollVertical" min="0" max="700" step="10" value="350">
+    <div class="percentage" id="verticalPercent">50%</div>
+  </div>
 
-    <!-- Impressora 2 -->
-    <div class="printer">
-      <h2>LJ18-RH - 9746</h2>
-      <div class="iframe-mask">
-        <iframe src="http://192.168.18.200"></iframe>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollVertical_9746">Rolagem Vertical</label>
-        <input type="range" id="scrollVertical_9746" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="verticalPercent_9746">50%</div>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollHorizontal_9746">Rolagem Horizontal</label>
-        <input type="range" id="scrollHorizontal_9746" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="horizontalPercent_9746">50%</div>
-      </div>
-    </div>
+  <div class="scroll-control">
+    <label for="scrollHorizontal">Y</label>
+    <input type="range" id="scrollHorizontal" min="0" max="700" step="10" value="350">
+    <div class="percentage" id="horizontalPercent">50%</div>
+  </div>
 
-    <!-- Impressora 3 -->
-    <div class="printer">
-      <h2>LJ18-CPD - 9755</h2>
-      <div class="iframe-mask">
-        <iframe src="http://192.168.18.199"></iframe>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollVertical_9755">Rolagem Vertical</label>
-        <input type="range" id="scrollVertical_9755" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="verticalPercent_9755">50%</div>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollHorizontal_9755">Rolagem Horizontal</label>
-        <input type="range" id="scrollHorizontal_9755" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="horizontalPercent_9755">50%</div>
-      </div>
-    </div>
+  <!-- Seção Baixas -->
+  <div id="low-label" class="section-title section-low" style="display:none;">⚠️ Toner/Tinta Baixo</div>
+  <div id="low-section"></div>
 
-    <!-- Impressora 4 -->
-    <div class="printer">
-      <h2>LJ30-BALCAO - 10581</h2>
-      <div class="iframe-mask">
-        <iframe src="http://192.168.31.66"></iframe>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollVertical_10581">Rolagem Vertical</label>
-        <input type="range" id="scrollVertical_10581" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="verticalPercent_10581">50%</div>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollHorizontal_10581">Rolagem Horizontal</label>
-        <input type="range" id="scrollHorizontal_10581" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="horizontalPercent_10581">50%</div>
-      </div>
-    </div>
+  <!-- Seção Normal -->
+  <div id="ok-label" class="section-title section-ok">✅ Impressoras</div>
+  <div id="ok-section"></div>
 
-    <!-- Impressora 5 -->
-    <div class="printer">
-      <h2>LJ30-RH - 10571</h2>
-      <div class="iframe-mask">
-        <iframe src="http://192.168.31.67"></iframe>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollVertical_10571">Rolagem Vertical</label>
-        <input type="range" id="scrollVertical_10571" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="verticalPercent_10571">50%</div>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollHorizontal_10571">Rolagem Horizontal</label>
-        <input type="range" id="scrollHorizontal_10571" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="horizontalPercent_10571">50%</div>
-      </div>
-    </div>
+  <script>
+    const printers = [
+      { name: "LJ18-BALCAO - 9735",        ip: "http://192.168.18.89" },
+      { name: "LJ18-RH - 9746",             ip: "http://192.168.18.200" },
+      { name: "LJ18-CPD - 9755",            ip: "http://192.168.18.199" },
+      { name: "LJ30-BALCAO - 10581",        ip: "http://192.168.31.66" },
+      { name: "LJ30-RH - 10571",            ip: "http://192.168.31.67" },
+      { name: "LJ30-CPD - 10569",           ip: "http://192.168.31.68" },
+      { name: "LJ-30-DRIVE - 13702",        ip: "http://192.168.31.69" },
+      { name: "LJ-10 - DRIVE - 9761",       ip: "http://192.168.60.159" },
+      { name: "LJ-10 - RH - 9730",          ip: "http://192.168.60.157" },
+      { name: "LJ-10 - CPD",                ip: "http://192.168.60.158" },
+      { name: "LJ-10 - BALCÃO - 9745",      ip: "http://192.168.60.156" },
+      { name: "LJ-36 - BALCÃO - 14654",     ip: "http://192.168.36.55" },
+      { name: "LJ-36 - CPD - 14662",        ip: "http://192.168.36.57" },
+      { name: "LJ-36 - DRIVE - 14668",      ip: "http://192.168.36.58" },
+      { name: "LJ-36 - RH - 14653",         ip: "http://192.168.36.56" },
+      { name: "LJ-11 - Balcão fiscal - 9763", ip: "http://192.168.40.155" },
+      { name: "LJ-11 - RH - 9736",          ip: "http://192.168.40.157" },
+      { name: "LJ-11 - CPD - 9743",         ip: "http://192.168.40.156" },
+      { name: "LJ-16 - Balcão fiscal",      ip: "http://192.168.70.155" },
+      { name: "LJ-16 - RH - 9751",          ip: "http://192.168.70.157" },
+      { name: "LJ-16 - CPD - 9738",         ip: "http://192.168.70.156" },
+      { name: "LJ-19 - 1 - ?",              ip: "http://192.168.19.141" },
+      { name: "LJ-19 - 2 - ?",              ip: "http://192.168.19.142" },
+      { name: "LJ-19 - 3 - ?",              ip: "http://192.168.19.143" },
+      { name: "LJ-19 - 4 - ?",              ip: "http://192.168.19.143" },
+      { name: "LJ-20 - 1 - ?",              ip: "http://192.168.20.25" },
+      { name: "LJ-20 - 2 - ?",              ip: "http://192.168.20.157" },
+      { name: "LJ-20 - 3 - ?",              ip: "http://192.168.20.159" },
+    ];
 
-    <!-- Impressora 6 -->
-    <div class="printer">
-      <h2>LJ30-CPD - 10569</h2>
-      <div class="iframe-mask">
-        <iframe src="http://192.168.31.68"></iframe>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollVertical_10571">Rolagem Vertical</label>
-        <input type="range" id="scrollVertical_10571" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="verticalPercent_10571">50%</div>
-      </div>
-      <div class="scroll-control">
-        <label for="scrollHorizontal_10571">Rolagem Horizontal</label>
-        <input type="range" id="scrollHorizontal_10571" min="0" max="700" step="10" value="350">
-        <div class="percentage" id="horizontalPercent_10571">50%</div>
-      </div>
-    </div>
+    const lowSection = document.getElementById('low-section');
+    const okSection  = document.getElementById('ok-section');
+    const lowLabel   = document.getElementById('low-label');
+    const lowState   = {};
 
-    <!-- Impressora 7 -->
-    <div class="printer">
-      <h2>LJ-30-DRIVE - 13702</h2>
-     
-::contentReference[oaicite:4]{index=4}
- 
+    function applyOffsets() {
+      const vVal = document.getElementById('scrollVertical').value;
+      const hVal = document.getElementById('scrollHorizontal').value;
+      document.querySelectorAll('.iframe-mask iframe').forEach(iframe => {
+        iframe.style.marginTop  = `-${vVal}px`;
+        iframe.style.marginLeft = `-${hVal}px`;
+      });
+    }
+
+    function buildCard(p, idx) {
+      const div = document.createElement('div');
+      div.className = 'printer' + (lowState[idx] ? ' low' : '');
+      div.dataset.idx = idx;
+
+      div.innerHTML = `
+        <h2>${p.name}</h2>
+        <div class="iframe-mask">
+          <iframe src="${p.ip}"></iframe>
+        </div>
+        <button class="btn-low ${lowState[idx] ? 'ok' : ''}" onclick="toggleLow(${idx})">
+          ${lowState[idx] ? '✅ Normal' : '⚠️ Marcar como Baixo'}
+        </button>
+      `;
+      return div;
+    }
+
+    function render() {
+      lowSection.innerHTML = '';
+      okSection.innerHTML  = '';
+      let hasLow = false;
+
+      printers.forEach((p, idx) => {
+        const card = buildCard(p, idx);
+        if (lowState[idx]) {
+          lowSection.appendChild(card);
+          hasLow = true;
+        } else {
+          okSection.appendChild(card);
+        }
+      });
+
+      lowLabel.style.display = hasLow ? 'block' : 'none';
+      applyOffsets();
+    }
+
+    function toggleLow(idx) {
+      lowState[idx] = !lowState[idx];
+      render();
+    }
+
+    // Sliders
+    const scrollVertical   = document.getElementById('scrollVertical');
+    const scrollHorizontal = document.getElementById('scrollHorizontal');
+    const verticalPercent  = document.getElementById('verticalPercent');
+    const horizontalPercent= document.getElementById('horizontalPercent');
+
+    function updatePercentage(slider, label) {
+      label.textContent = Math.round((slider.value / slider.max) * 100) + '%';
+    }
+
+    scrollVertical.addEventListener('input', () => {
+      updatePercentage(scrollVertical, verticalPercent);
+      applyOffsets();
+    });
+    scrollHorizontal.addEventListener('input', () => {
+      updatePercentage(scrollHorizontal, horizontalPercent);
+      applyOffsets();
+    });
+
+    updatePercentage(scrollVertical, verticalPercent);
+    updatePercentage(scrollHorizontal, horizontalPercent);
+
+    render();
+  </script>
+</body>
+</html>
